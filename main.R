@@ -36,7 +36,7 @@ funcao_cont <- function(vetor_listas) {
   return(total)
 }
 
-# tentei fazer uma função que passava o nome da coluna, e o df2 automaticamente fazia tudo, mas deu errado. 
+# tentei fazer uma função que passava o nome da coluna, e o df2 automaticamente fazia tudo, mas deu errado
 
 
 
