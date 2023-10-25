@@ -1,9 +1,9 @@
 ---
-title: "Consumo de álcool entre os estudantes da Universidade Estadual de Maringá (UEM)"
+title: "Consumo de álcool entre os estudantes de exatas da Universidade Estadual de Maringá (UEM)"
 #subtitle: "⚔<br/>with xaringan"
 author: "Gabriel Lopes Rubinho - RA 125009 <br> Lorival Coelho Junior - RA 124105"
 institute: "Universidade Estadual de Maringá"
-date: "`r Sys.Date()`"
+#date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
@@ -13,6 +13,20 @@ output:
     countIncrementalSlides: false
 ---
 
+``` {r xaringan-logo, echo = FALSE, warning = FALSE} 
+library(xaringanExtra)
+use_logo(
+  "img/dep/des.PNG",
+  width = "125px",
+  height = "135px",
+  position = css_position(top = "1em", right = "5em"),
+  link_url = NULL,
+  exclude_class = c("title-slide", "inverse", "hide_logo")
+)
+
+```
+
+
 ``` {r xaringan-themer, include = FALSE}
 library(xaringanthemer)
 style_mono_accent(
@@ -21,11 +35,31 @@ style_mono_accent(
 
 ```
 
-background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
-
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
+
+
+# Introdução
+Se é de amplo conhecimento que as bebidas alcóolicas fazem parte do dia-a-dia dos brasileiros, não a toa as festas as quais celebramos como natal, ano novo, páscoa, sempre envolvem essas bebidas.  
+Quando se chega a fase universitária, não é diferente. Muitos jovens começam a beber nessa idade, indo as festas e, também, por conta das pessoas que o rodeiam. 
+
+# Objetivo
+
+Verificar o perfil (análise exploratória e testes, o que acha?) de consumo de álcool entre os estudantes de Estatística, Matemática, Física e Química na Universidade Estadual de Maringá.
+
+---
+
+# Metodologia
+Através de Amostragem por Conveniência, foi-se se enviado e-mails para os estudantes dos cursos de interesse com um questionário no dia 18/10, e foi fechado dia 21/10, após a obtenção de 149 respostas.  <br><br>
+
+O questionário continha perguntas como:
+- Qual o curso da graduação você realiza?  <br>
+- Você ingere bebidas alcóolicas?  <br>
+- Você bebe álcool em quais situações?  <br>
+- Caso beba, quantos em média você costuma gastar por mês com álcool?  <br>
+- Caso beba, o que te leva a beber?  <br>
+ 
 
 ???
 
