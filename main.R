@@ -9,7 +9,6 @@ df <- read.csv('questionario_alcool.csv',
                header = TRUE)
 
 df <- df %>% janitor::clean_names() # limpeza de nomes de colunas, mas não precisava
-
 df1 <- df[,-1] # tirando a primeira coluna, é inútil 
 
 antigo_nomes <- as.vector(colnames(df1))
@@ -24,7 +23,7 @@ df2 <- df1 %>%
     ~novos_nomes, all_of(antigo_nomes)
   ) # substituindo os nomes antigos pelos novos
 
-
+str(df2)
 
 
 # contar palavras nas colunas que é possível mais de uma resposta
@@ -127,82 +126,30 @@ table(df4$gasto_mensal)
 df4$gasto_mensal <- gsub('.*0 a 20.*', '0 a 20 reais', df4$gasto_mensal) 
 df4$gasto_mensal <- gsub('.*20 a 50.*', '20 a 50 reais', df4$gasto_mensal)
 df4$gasto_mensal <- gsub('.*50 a 100.*', '50 a 100 reais', df4$gasto_mensal)
-uni_bar(df4, 'gasto_mensal', xlab = 'Faixa de gastos')
 
 
-# Função de gráfico de barras ---------------------------------------------
-
-uni_bar <- function(banco, var, ylab= 'Frequência', xlab = '', color = 'darkslategrey', label_size = 0.25, order = NULL, flip = F, arquivo = NULL){
-  
-  banco <- banco[banco[var] != '',][var]
-  pct_format = scales::percent_format(accuracy = .1)
-  if(typeof(banco[3,var]) == 'character')
-  {  
-    prim.maiuscula <- function(x) {
-      x <- tolower(x)
-      substr(x, 1, 1) <- toupper(substr(x, 1, 1))
-      x
-    }
-    
-    banco[var] <- sapply(banco[var], FUN = prim.maiuscula)
-  }
-  if(!is.null(order))
-  {banco[var] <- fct_relevel(factor((banco[[var]]), levels=order))}
-  banco <- data.frame(table(banco[var]))
-  names(banco)[1] <- var
-  
-  
-  if(flip == F)
-  { ax <- ggplot(banco, aes(x = .data[[var]], y = Freq)) + 
-    geom_bar(fill=color, stat='identity') + theme_minimal() +
-    labs(x= xlab, y = 'Frequência') + 
-    geom_label(aes(
-      label = sprintf(
-        '%d (%s)',
-        Freq,
-        pct_format(Freq / sum(Freq))
-      )), stat='identity', fill='white', vjust=1.2, label.size = label_size)}
-  else if(flip == T)
-  { ax <- ggplot(banco, aes(x = .data[[var]], y = Freq)) + 
-    geom_bar(fill=color, stat='identity') + theme_minimal() +
-    labs(x= xlab, y = 'Frequência') + 
-    geom_label(aes(
-      label = sprintf(
-        '%d (%s)',
-        Freq,
-        pct_format(Freq / sum(Freq))
-      )), stat='identity', fill='white', label.size = label_size)+
-    coord_flip()}
-  
-  
-  
-  print(ax)
-  if(!is.null(arquivo)){
-  arquivo <- paste0('img/uni/', var, '.pdf')
-  ggsave(arquivo)}
-  
-}
+write.csv(df4, file = 'dados_corrigidos.csv', fileEncoding = 'UTF-8',)
 
 
-
-uni_bar(df4, 'curso', xlab = 'Curso',order = c('Matemática', 'Ciência da computação', 'Estatística', 'Informática', 'Química'))
-uni_bar(df4, 'frequencia', xlab = 'Vezes', order = c('Nenhuma vez', 'Zero a uma vez', 'Uma a duas vezes', 'Mais de duas vezes'))
 
 
 # Descritiva --------------------------------------------------------------
 
 
 
-table(df4[df4$se_fornao_ja_ingeriu != '',]$se_fornao_ja_ingeriu)/68 
-# aproximadamento 18% da nossa amostra nunca ingeriu alcool
+# Descrição da amostra ----------------------------------------------------
+
+
+
 names(df4)
 
+## Curso
 data.curso <- data.frame(table(df4$curso))
 ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) +
   geom_bar(stat = "identity", width = 0.8, color = 'black') +
-  labs(title = "Número de ambientes que se toma álcool", 
+  labs(title = "Curso realizado", 
        x = "", y = "Frequência") +
-  guides(fill = guide_legend(title = 'Lugares')) + 
+  guides(fill = guide_legend(title = 'Curso')) + 
   theme_minimal() +
   formato+
   scale_fill_brewer(palette = "Set1") +
@@ -214,3 +161,45 @@ ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder
       pct_format(Freq / sum(Freq))
     )), stat='identity', fill='white', vjust=1.2)
 
+ggsave('img/uni/curso.jpg', width = 10, height = 8)
+
+## Ingestão de alcool
+data.curso <- data.frame(table(df4$ingere_alcool))
+ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(Var1, Freq))) +
+  geom_bar(stat = "identity", width = 0.8, color = 'black') +
+  labs(title = "Gráfico de barras da ingestão ou não de álcool", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Ingere álcool?')) + 
+  theme_minimal() +
+  formato+
+  scale_fill_brewer(palette = "Set1") +
+  
+  geom_label(aes(
+    label = sprintf(
+      '%d (%s)',
+      Freq,
+      pct_format(Freq / sum(Freq))
+    )), stat='identity', fill='white', vjust=1.2)
+ggsave('img/uni/ingestao.jpg', width = 10, height = 8)
+
+
+table(df4[df4$se_fornao_ja_ingeriu != '',]$se_fornao_ja_ingeriu)/68 
+# aproximadamento 18% da nossa amostra nunca ingeriu alcool
+
+data.curso <- data.frame(table(df4[df4$se_fornao_ja_ingeriu != '',]$se_fornao_ja_ingeriu))
+ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(Var1, Freq))) +
+  geom_bar(stat = "identity", width = 0.8, color = 'black') +
+  labs(title = "Gráfico de barras da ingestão anterior ou não de álcool", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Já ingeriu álcool?')) + 
+  theme_minimal() +
+  formato+
+  scale_fill_brewer(palette = "Set1") +
+  
+  geom_label(aes(
+    label = sprintf(
+      '%d (%s)',
+      Freq,
+      pct_format(Freq / sum(Freq))
+    )), stat='identity', fill='white', vjust=1.2)
+ggsave('img/uni/ingestao_previa.jpg', width = 10, height = 8)
