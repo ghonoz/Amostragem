@@ -25,5 +25,15 @@ df2 <- df1 %>%
 
 
 
-ggplot(df2, aes(x = curso)) + 
-  geom_bar()
+# contar palavras nas colunas que é possível mais de uma resposta
+
+valores <- strsplit(df2$bebe_onde, ', ')
+
+funcao_cont <- function(vetor_listas) {
+  valores_gerais <- unlist(vetor_listas)
+  total <- table(valores_gerais)
+  return(total)
+}
+
+funcao_cont(valores)
+
