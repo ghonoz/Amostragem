@@ -54,7 +54,7 @@ formato <- theme(
   axis.text.x = element_text(size = 10)
 )
 
-grafico_bebeOnde <-ggplot(data = teste, aes(x = valores_gerais, y = Freq, fill = valores_gerais)) +
+grafico_bebeOnde1 <-ggplot(data = teste, aes(x = valores_gerais, y = Freq, fill = valores_gerais)) +
   geom_bar(stat = "identity", width = 0.6, color = 'black') +
   labs(title = "Número de ambientes que se toma álcool", 
        x = "", y = "Frequência") +
@@ -203,3 +203,5 @@ ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(
       pct_format(Freq / sum(Freq))
     )), stat='identity', fill='white', vjust=1.2)
 ggsave('img/uni/ingestao_previa.jpg', width = 10, height = 8)
+
+
