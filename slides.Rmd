@@ -59,18 +59,23 @@ O questionário continha perguntas como:
 - Você bebe álcool em quais situações?  <br>
 - Caso beba, quantos em média você costuma gastar por mês com álcool?  <br>
 - Caso beba, o que te leva a beber?  <br>
+
+
  
 
-???
-
-Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
-
 ---
-class: center, middle
 
-# xaringan
+# Metodologia
 
-### /ʃaː.'riŋ.ɡan/
+Os dados foram extraídos de um arquivo `.csv`, o qual pode ser visto a seguir
+
+```{r}
+library(kableExtra)
+load('df4.Rdata')
+knitr::kable(head(df4)) %>% 
+  kableExtra::kable_styling(font_size = 4)
+```
+
 
 ---
 class: inverse, center, middle
