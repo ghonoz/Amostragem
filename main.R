@@ -107,7 +107,7 @@ df4 <- df3
 for(i in 1:(ncol(df4)-1)){print(table(df4[i]))}
 
 ## Tipo de atividade remunerada
-table(df4$tipo_atividade_remunerada)
+table(df4$tipo_atividade_remunerada)                 # Gsubs pra filtrar e alterar os dados
 df4$tipo_atividade_remunerada <- gsub('Au.*', 'Trabalho Integral (CLT)', df4$tipo_atividade_remunerada)
 df4$tipo_atividade_remunerada <- gsub('De.*', 'Não realizo', df4$tipo_atividade_remunerada)
 df4$tipo_atividade_remunerada <- gsub('Trabalho .*', 'Trabalho Integral (CLT)', df4$tipo_atividade_remunerada)
@@ -128,7 +128,7 @@ df4$gasto_mensal <- gsub('.*20 a 50.*', '20 a 50 reais', df4$gasto_mensal)
 df4$gasto_mensal <- gsub('.*50 a 100.*', '50 a 100 reais', df4$gasto_mensal)
 
 
-write.csv(df4, file = 'dados_corrigidos.csv', fileEncoding = 'UTF-8',)
+write.csv(df4, file = 'dados_corrigidos.csv', fileEncoding = 'UTF-8',)      # Pro relatório
 
 
 
@@ -144,7 +144,7 @@ write.csv(df4, file = 'dados_corrigidos.csv', fileEncoding = 'UTF-8',)
 names(df4)
 
 ## Curso
-data.curso <- data.frame(table(df4$curso))
+data.curso <- data.frame(table(df4$curso))     # gráfico univariado de barras para o curso
 ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) +
   geom_bar(stat = "identity", width = 0.8, color = 'black') +
   labs(title = "Curso realizado", 
@@ -154,7 +154,7 @@ ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder
   formato+
   scale_fill_brewer(palette = "Set1") +
 
-  geom_label(aes(
+  geom_label(aes(                          # Adicionando o número nas barras
     label = sprintf(
       '%d (%s)',
       Freq,
@@ -164,7 +164,7 @@ ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder
 ggsave('img/uni/curso.jpg', width = 10, height = 8)
 
 ## Ingestão de alcool
-data.curso <- data.frame(table(df4$ingere_alcool))
+data.curso <- data.frame(table(df4$ingere_alcool))  # gráfico univariado de barras para ingestão de alcool
 ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(Var1, Freq))) +
   geom_bar(stat = "identity", width = 0.8, color = 'black') +
   labs(title = "Gráfico de barras da ingestão ou não de álcool", 
@@ -174,7 +174,7 @@ ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(
   formato+
   scale_fill_brewer(palette = "Set1") +
   
-  geom_label(aes(
+  geom_label(aes(                                 # Adicionando o número nas barras
     label = sprintf(
       '%d (%s)',
       Freq,
@@ -196,10 +196,73 @@ ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(
   formato+
   scale_fill_brewer(palette = "Set1") +
   
-  geom_label(aes(
+  geom_label(aes(                                  # Adicionando o número nas barras
     label = sprintf(
       '%d (%s)',
       Freq,
       pct_format(Freq / sum(Freq))
     )), stat='identity', fill='white', vjust=1.2)
 ggsave('img/uni/ingestao_previa.jpg', width = 10, height = 8)
+
+data.curso <- data.frame(table(df4[df4$atividade_remunerada != '',]$atividade_remunerada))
+ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(Var1, Freq))) +
+  geom_bar(stat = "identity", width = 0.8, color = 'black') +
+  labs(title = "Gráfico de barras da realização de atividade remunerada", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Realiza atividade?')) + 
+  theme_minimal() +
+  formato+
+  scale_fill_brewer(palette = "Set1") +
+  
+  geom_label(aes(                              # Adicionando o número nas barras
+    label = sprintf( 
+      '%d (%s)',
+      Freq,
+      pct_format(Freq / sum(Freq))
+    )), stat='identity', fill='white', vjust=1.2)
+ggsave('img/uni/remuneracao.jpg', width = 10, height = 8)
+
+# Criando um dataframe para aqueles que preencheram a questão
+data.curso <- data.frame(table(df4[df4$tipo_atividade_remunerada != '',]$tipo_atividade_remunerada))
+ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) +
+  geom_bar(stat = "identity", width = 0.8, color = 'black') +
+  labs(title = "Gráfico de barras da realização de atividade remunerada", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Tipo de atividade')) + 
+  theme_minimal() +
+  formato+
+  scale_fill_brewer(palette = "Set1") +
+  
+  geom_label(aes(                             # Adicionando o número nas barras
+    label = sprintf(
+      '%d (%s)',
+      Freq,
+      pct_format(Freq / sum(Freq))
+    )), stat='identity', fill='white', vjust=1.2)
+ggsave('img/uni/remuneracao.jpg', width = 10, height = 8)
+
+
+# Análises ----------------------------------------------------------------
+
+df_teste <- df4[df4$gasto_mensal != 'Não bebo',]
+df_teste <- data.frame(table(df_teste$atividade_remunerada, df_teste$gasto_mensal)) 
+# Fazendo um dataframe da frequência das variáveis de interesse
+
+ggplot(data = df_teste, aes(x = Var2, y = Freq, fill = Var1)) +
+  geom_bar(stat = "identity", width = 0.8, color = 'black', position =  "dodge") +
+  labs(title = "Realização de atividade remunerada X Faixa de gasto", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Realização de atividade')) + 
+  theme_minimal() +
+  formato+
+  scale_fill_brewer(palette = "Set1") +
+  
+  geom_label(aes(                                    # Adicionando o número nas barras com posição dodge
+    label = sprintf(
+      '%s (%s)',
+      x = Freq,
+      pct_format((Freq / sum(Freq)))
+    ), group = Var2), position = position_dodge2(width = 0.9, preserve ='total'),
+    col = "black", fill='white',vjust = -.2, hjust = 0.5)
+ggsave('img/uni/remuneracao.jpg', width = 10, height = 8)
+
