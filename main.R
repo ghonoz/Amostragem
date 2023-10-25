@@ -52,7 +52,42 @@ grafico_bebeOnde <-ggplot(data = teste, aes(x = valores_gerais, y = Freq, fill =
   guides(fill = guide_legend(title = 'Lugares')) + 
   theme_minimal() +
   scale_fill_brewer(palette = "Set1") 
-grafico_bebeOnde
+
+# chatgpt ajudou a customizar
 
 
 
+# fazendo a intersecção da coluna ingere_alcool 
+
+unique(df2$sintomas)
+unique(df2$ingere_alcool)
+
+df3 <- df2
+
+df3 <- within(df3, sintomas[ingere_alcool == 'Não'] <- "Não bebo")
+View(df3)
+
+# talvez dá pra pensar que as pessoas que marcaram não no ingere alcool, já fizeram consumo em algum momento da vida, e marcaram os sintomas e lugares no que tinham antes de parar. acha melhor mudar ou não? 
+
+
+
+
+
+
+# gráfico sintomas --------------------------------------------------------
+
+
+coluna_sintomas <- strsplit(df2$sintomas, ', ')
+valores_sintomas <- funcao_cont(coluna_sintomas)
+t <- as.data.frame(valores_sintomas)
+
+# tem uma resposta zoada na linha 9, sem dúvidas excluir. 
+# aproveitando, excluir outras também
+library(dplyr)
+
+t <- t[-c(1, 9),]
+unique(t$valores_gerais)
+
+
+
+  
