@@ -37,6 +37,11 @@ Na amostra temos que a maioria dos indivíduos realizam atividade remunerada, ap
 
 # 3. Resultados
 
+Algumas análises foram feitas para entender o comportamento dos dados e bla bla bla
+
+![](img/bi/remuneracaoXgasto.jpg)
+No gráfico acima vemos a frequência das faixas de gastos por realização ou não de atividade remunerada, percebe-se que na última faixa, mais de 100 reais, há apenas indivíduos que realizam e na faixa 50 a 100 reais, a categoria que não realiza cai mais sua frequência relativamente.
+
 # 4. Conclusão
 
 # 5. Referências
