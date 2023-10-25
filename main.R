@@ -307,11 +307,25 @@ corpus <- tm_map(corpus, content_transformer(tolower))
 corpus <- tm_map(corpus, removePunctuation)
 auxCorpus <- tm_map(corpus, removeWords, stopwords('pt')) 
 auxCorpus <- tm_map(auxCorpus, stemDocument)
-wordcloud(auxCorpus,max.words=50,colors=c("blue","red"))
+wordcloud(auxCorpus,max.words=20,colors=c("blue","red"))
 
 
 
-# Eu não entendo o que está acontecendo
+# data mining, que não faço ideia de como funciona por trás
+
+# por algum motivo, ele as vezes ignora a ultima letra da palavra
+
+
+# tem esse customizado também, vai de saberr qual fica melhor
+
+
+wordcloud(words = auxCorpus, scale = c(3, 0.5), min.freq = 1, colors = brewer.pal(8, "Dark2")) +
+  ggtitle("Customized Word Cloud") +
+  xlab("Words") +
+  ylab("Frequency")
+
+
+
 
 
 
