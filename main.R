@@ -1,13 +1,13 @@
+install.packages('tm')
+install.packages('wordcloud')
+install.packages("SnowballC")
 library(janitor)
 library(ggplot2)
 library(forcats)
 library(tidyverse)
-install.packages('tm')
 library(tm)
 library(stringi)
-install.packages('wordcloud')
 library(wordcloud)
-install.packages("SnowballC")
 library(SnowballC)
 
 pct_format = scales::percent_format(accuracy = .1)
@@ -323,6 +323,12 @@ wordcloud(words = auxCorpus, scale = c(3, 0.5), min.freq = 1, colors = brewer.pa
   ggtitle("Customized Word Cloud") +
   xlab("Words") +
   ylab("Frequency")
+
+
+
+
+
+
 
 
 
