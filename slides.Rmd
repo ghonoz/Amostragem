@@ -102,6 +102,51 @@ class: inverse, center, middle
 
 ---
 
+
+```{r, echo = FALSE, out.width = "90%"}
+
+load(file = 'testando2.Rdata')
+load(file = 'curso.Rdata')
+load(file = 'ingestao.Rdata')
+load(file = 'ingestao_alcool.Rdata')
+load(file ='realizaAtividade.Rdata')
+
+```
+
+
+# Curso
+
+``` {r, echo = FALSE, out.width = "90%"}
+
+plotly_curso
+
+```
+
+---
+
+# Ingestão
+
+``` {r, echo = FALSE, out.width = "90%"}
+
+ingestao
+
+```
+ 
+---
+
+# Atividade Remunerada
+
+``` {r, echo = FALSE, out.width = "90%"}
+
+atividade_remunerada
+
+```
+
+
+
+---
+
+
 # Lugar onde bebe
 
 ```{r, echo = FALSE, out.width = "90%"}
@@ -113,27 +158,10 @@ testeee1
 
 ```
 
----
-# Curso
-
-``` {r, echo = FALSE, out.width = "90%"}
-
-plotly_curso
-
-```
-
----
-# Ingestão
-
-``` {r, echo = FALSE, out.width = "90%"}
-
-plotly_ingestao
-
-```
- 
 
 
 ---
+
 
 # Núvem de palavras
 
@@ -160,7 +188,7 @@ df5 <- df5 %>%
     o_que_leva_a_beber = tolower(o_que_leva_a_beber)
   ) # joga tudo pra lowercase
 
-df5$o_que_leva_a_beber <- gsub("\\b(bebo|nao|geralmente|estar|apenas|loucona|porque|beber|algo|pra|bebida)\\b", "", df5$o_que_leva_a_beber, ignore.case = TRUE)
+df5$o_que_leva_a_beber <- gsub("\\b(bebo|nao|geralmente|estar|apenas|loucona|porque|beber|algo|pra|bebida|cerveja|alcool|gostar)\\b", "", df5$o_que_leva_a_beber, ignore.case = TRUE)
 
 
 corpus <- df5$o_que_leva_a_beber %>% 
@@ -176,7 +204,7 @@ wordcloud(auxCorpus,max.words=20,colors=c("blue","red"))
 
 
 
---- 
+---
 
 
 
