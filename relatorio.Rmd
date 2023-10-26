@@ -15,11 +15,33 @@ knitr::opts_chunk$set(echo = F, warning = F)
 
 # 1. introdução
 
+A pesquisa atual tem por objetivo entender os padrões de consumo de álcool dos estudantes dos cursos de exatas. Para isso, foi aplicado um questionário com os estudantes dos cursos de ciência da computação, estística, física. informática, matemática e química. <br><br>
+
 ## 1.1 Sobre o questionário
+
+O questionário aplicado é constituído de 12 questões, sendo elas 9 com respostas fechadas, dessas duas com uma opção para o indivíduo discursar caso ele não se encaixe nas respostas pré definidas, além disso há 2 questões de múltipla escolha e por fim uma questão aberta e opcional para o respondente expressar uma visão pessoal. Esse questionário foi colocado no Google Forms e disparado a todos alunos dos cursos de exatas da UEM, o forms está a seguir:
+
+![](img/questionario/1.png)
+![](img/questionario/2.png)
+![](img/questionario/3.png)
+![](img/questionario/4.png)
+![](img/questionario/5.png)
+![](img/questionario/6.png)
+![](img/questionario/7.png)
+![](img/questionario/8.png)
+![](img/questionario/9.png)
+![](img/questionario/10.png)
+![](img/questionario/11.png)
+![](img/questionario/12.png)
+![](img/questionario/13.png)
+
+
+
+
 
 # 2. Descrição da amostra
 
-A amostra foi constituída de 149 observações de indivíduos dos cursos de ciência da computação, estatística, informática, matemática e química, com indivíduos que bebem, já beberam ou nunca beberam.
+A amostra foi obtida via amostragem por conveniênica, essa foi constituída de 149 observações de indivíduos dos cursos de ciência da computação, estatística, informática, matemática e química, com indivíduos que bebem, já beberam ou nunca beberam.
 <br><br>
 
 ![](img/uni/curso.jpg)

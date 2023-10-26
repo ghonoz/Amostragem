@@ -358,9 +358,6 @@ ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(
       pct_format(Freq / sum(Freq))
     )), stat='identity', fill='white', vjust=1.2)
 ggsave('img/uni/ingestao_previa.jpg', width = 10, height = 8)
-
-<<<<<<< HEAD
-=======
   
   
 data.curso <- data.frame(table(df4[df4$atividade_remunerada != '',]$atividade_remunerada))
@@ -422,8 +419,8 @@ ggplot(data = df_teste, aes(x = Var2, y = Freq, fill = Var1)) +
       x = Freq,
       pct_format((Freq / sum(Freq)))
     ), group = Var2), position = position_dodge2(width = 0.9, preserve ='total'),
-    col = "black", fill='white',vjust = -.2, hjust = 0.5)
-ggsave('img/uni/remuneracao.jpg', width = 10, height = 8)
+    col = "black", fill='white',vjust = -.2)
+ggsave('img/bi/remuneracaoXgasto.jpg', width = 10, height = 8)
 
 
 
