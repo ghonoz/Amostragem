@@ -1,5 +1,5 @@
 ---
-title: "Relatorio"
+title: "Consumo de álcool entre os estudantes de Exatas"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -8,7 +8,15 @@ output:
     toc_float: true
     theme: simplex
 ---
+<style>
+  body{
+    text-align: justify;
+  }
+</style>
 
+
+<br>
+Gabriel Lopes Rubinho - RA: 125009 <br> Lorival Coelho Junior - RA: 124105
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = F, warning = F)
 ```
@@ -65,6 +73,14 @@ Algumas análises foram feitas para entender o comportamento dos dados de forma 
 ![](img/uni/ambientes.jpg)
 O gráfico acima, mostra que o local mais frequente onde os indivíduos consomem álcool são bares, seguido por casa, festas universitárias e por último outros ambientes que as opções não abordaram.<br><br>
 
+![](img/uni/sintomas.jpg)
+Quanto aos sintomas, temos que  o mais frequente é ressaca e o menos desmaio, quanto aos indivíduos que bebem, aproximadamente, 10% (ou 8% da amostra total) deles informaram que nunca tiveram nenhum dos sintomas citados.<br><br>
+
+![](img/uni/atrapalhar.jpg)
+No gráfico acima vemos que, naqueles que bebem e já tiverem sintomas, a maioria não chegou a ter seu trabalho ou estudo atrapalhado pelos sintomas do álcool. <br><br>
+
+![](img/uni/freq.jpg)
+Para a frequência do consumo de álcool semanal, temos que a maioria dos indivíduos que consomem estão na faixa de zero a uma vez por semana, seguido a uma a duas vezes e com uma frequência bem baixa mais de duas vezes na semana.<br><br>
 
 
 
@@ -85,13 +101,20 @@ Para verificar se a diferença entre os grupos era estatiscamente significativa 
 ![](img/bi/ingestaoXcurso.jpg)
 Na figura obeservamos que quase 40% daqueles que não bebem são de ciências da computação, enquanto os cursos de estatística e química estão bem desbalanceados entre as duas categorias tendo muito mais indivíduos que bebem, já para matemática e informática, mesmo a maioria bebendo as categorias estão mais balanceadas. <br><br>
 
-Para testar se o perfil dos alunos quanto a ingestão de álcool é estatísticamente significativa, foi realizado o teste de Fisher e Qui-quadrado, e em ambos temos um p-valor bem parecido, visto o tamanho das amostras em cada categoria da tabela de contingência, e rejeitamos $H_0$ utilizando 95% de confiança,
+Para testar se o perfil dos alunos de cada curso quanto a ingestão de álcool é estatísticamente significativa, foi realizado o teste de Fisher e Qui-quadrado, e em ambos temos um p-valor bem parecido, visto o tamanho das amostras em cada categoria da tabela de contingência, e rejeitamos $H_0$ utilizando 95% de confiança,
 
 | Teste       | p-value  | Decisão          |
 |-------------|----------|------------------|
 | Fisher      | 0.003528 | Rejeitamos $H_0$ |
-| Chi-Squared | 0.003404 | Rejeitamos $H_0$ |
+| Chi-Squared | 0.003404 | Rejeitamos $H_0$ | <br><br><br><br>
 
 # 4. Conclusão
+Enfim, após a análise das respostas do questionário podemos chegar a algumas conclusões: A maioria dos alunos dos cursos de exatas ingerem álcool, daqueles que não ingerem quase todos já ingeriram anteriormente. Quanto ao local onde é ingerido álcool por mais indivíduo é em bares. Para os sintomas gerados pelo álcool, 90% dos indivíduos que bebem já tiveram algum sintoma, sendo ressaca o mais comum, no entanto normalmente esses sintomas não atrapalham trabalho ou estudo. Quanto a frequência semanal de consumo de bebidas, o intervalo mais frequente é de zero a uma vez. Na amostra, apenas indivíduos que trabalham tiveram gasto médio maior que 100 reais mensal, independente se trabalha ou não a faixa mais frequente de gasto é de 0 a 50. Quanto a relação de curso e ingestão ou não de álcool, foi verificado que há diferença significativa, tendo o curso de Ciência da computação com mais indivíduos que não bebem e os curso de estatística e química com mais indivíduos que bebem.
+<br><br><br><br>
 
 # 5. Referências
+
+1. Morettin, Pedro Alberto, and Wilton Oliveira Bussab. Estatística básica. Saraiva Educação SA, 2017.
+
+2. CAMPOS, Humberto. Estatística Experimental Não-Paramétrica. 4 Ed, Editora ESALQ,
+Piracicaba,1983.

@@ -207,7 +207,7 @@ ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder
       pct_format(Freq / sum(Freq))
     )), stat='identity', fill='white', vjust=1.2)
 
-
+ggsave('img/uni/curso.jpg', width = 10, height = 8)
 
 
 
@@ -251,7 +251,7 @@ save(plotly_curso, file = 'curso.Rdata')
 
 
 
-ggsave('img/uni/curso.jpg', width = 10, height = 8)
+
 
 ## Ingestão de alcool
 data.curso <- data.frame(table(df4$ingere_alcool))  # gráfico univariado de barras para ingestão de alcool
@@ -392,9 +392,9 @@ df_teste <- data.frame(table(unlist(valores)))
 
 ggplot(data = df_teste, aes(x = reorder(Var1, Freq), y = Freq, fill = Var1)) +
   geom_bar(stat = "identity", width = 0.6, color = 'black') +
-  labs(title = "Frequência dos ambientes onde se toma álcool", 
+  labs(title = "Frequência dos sintomas gerados pelo álcool", 
        x = "", y = "Frequência") +
-  guides(fill = guide_legend(title = 'Lugares')) + 
+  guides(fill = guide_legend(title = 'Sintoma')) + 
   ylim(0, 70)+
   theme_minimal() +
   formato+
@@ -409,7 +409,48 @@ ggplot(data = df_teste, aes(x = reorder(Var1, Freq), y = Freq, fill = Var1)) +
     )), stat='identity', fill='white', hjust = .5)
 ggsave('img/uni/sintomas.jpg', width = 10, height = 8)
 
+df4$frequencia <- fct_relevel(factor((df4$frequencia), levels=c('Nenhuma vez','Zero a uma vez',  "Uma a duas vezes", "Mais de duas vezes"  )))
+data.curso <- data.frame(table(df4$frequencia))
+ggplot(data = data.curso, aes(x = Var1, y = Freq, fill = Var1)) +
+  geom_bar(stat = "identity", width = 0.6, color = 'black') +
+  labs(title = "Frequência semanal de ingestão de álcool", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Frequência')) + 
+  theme_minimal() +
 
+  formato+
+  #theme(legend.position="none")+
+  scale_fill_brewer(palette = "Set1") +
+
+  geom_label(aes(                                  # Adicionando o número nas barras
+    label = sprintf(
+      '%d (%s)',
+      Freq,
+      pct_format(Freq / sum(Freq))
+    )), stat='identity', fill='white', vjust = 1.15)
+ggsave('img/uni/freq.jpg', width = 10, height = 8)
+
+
+data.curso <- data.frame(table(gsub('Nunca tive','Nunca tive sintomas',df4$ja_teve_problemas)))
+
+ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) +
+  geom_bar(stat = "identity", width = 0.6, color = 'black') +
+  labs(title = "Frequência em que os sintomas do álcool atrapalharam\n o trabalho ou estudo", 
+       x = "", y = 'Frequência') +
+  guides(fill = guide_legend(title = "Já atrapalhou?")) + 
+  theme_minimal() +
+  
+  formato+
+  #theme(legend.position="none")+
+  scale_fill_brewer(palette = "Set1") +
+  
+  geom_label(aes(                                  # Adicionando o número nas barras
+    label = sprintf(
+      '%d (%s)',
+      Freq,
+      pct_format(Freq / sum(Freq))
+    )), stat='identity', fill='white', vjust = 1.15)
+ggsave('img/uni/atrapalhar.jpg', width = 10, height = 8)
 
 
 
