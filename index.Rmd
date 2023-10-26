@@ -46,7 +46,7 @@ Quando se chega a fase universitária, não é diferente. Muitos jovens começam
 
 # Objetivo
 
-Verificar o perfil (análise exploratória e testes, o que acha?) de consumo de álcool entre os estudantes de Estatística, Matemática, Física e Química na Universidade Estadual de Maringá.
+A pesquisa atual tem por objetivo entender os padrões de consumo de álcool dos estudantes dos cursos de exatas. Para isso, foi aplicado um questionário com os estudantes dos cursos de ciência da computação, estística, física. informática, matemática e química.
 
 ---
 
@@ -102,6 +102,53 @@ class: inverse, center, middle
 
 ---
 
+
+```{r, echo = FALSE, out.width = "90%"}
+
+load(file = 'testando2.Rdata')
+load(file = 'curso.Rdata')
+load(file = 'ingestao.Rdata')
+load(file = 'ingestao_alcool.Rdata')
+load(file ='realizaAtividade.Rdata')
+
+
+```
+
+
+# Curso
+
+``` {r, echo = FALSE, out.width = "90%"}
+
+plotly_curso
+
+
+```
+
+---
+
+# Ingestão
+
+``` {r, echo = FALSE, out.width = "90%"}
+
+ingestao
+
+```
+ 
+---
+
+# Atividade Remunerada
+
+``` {r, echo = FALSE, out.width = "90%"}
+
+atividade_remunerada
+
+```
+
+
+
+---
+
+
 # Lugar onde bebe
 
 ```{r, echo = FALSE, out.width = "90%"}
@@ -109,33 +156,70 @@ class: inverse, center, middle
 load(file = 'testando2.Rdata')
 load(file = 'curso.Rdata')
 load(file = 'ingestao.Rdata')
+load(file ='lugares.Rdata')
+load(file ='siy.Rdata')
+load(file ='frequenciaaaaa.Rdata')
+load(file ='atividadeporfaixa.Rdata')
 testeee1
 
 ```
 
+
+
 ---
-# Curso
+# Sintomas
+
+```{r, echo = FALSE, out.width = "90%"}
+
+sintoms
+
+```
+
+
+---
+
+# Ingestão de Álcool
+
+```{r, echo = FALSE, out.width = "90%"}
+
+fre
+
+```
+
+
+
+---
+
+# Atividade por faixa etária
 
 ``` {r, echo = FALSE, out.width = "90%"}
 
-plotly_curso
+atv_faixa
 
 ```
 
 ---
-# Ingestão
 
-``` {r, echo = FALSE, out.width = "90%"}
+# Teste de hipóteses
+No gráfico anterior, vemos a frequência das faixas de gastos por realização ou não de atividade remunerada, percebe-se que na última faixa, mais de 100 reais, há apenas indivíduos que realizam e na faixa 50 a 100 reais, a categoria que não realiza cai mais sua frequência relativamente. <br><br>
 
-plotly_ingestao
+Para verificar se a diferença entre os grupos era estatiscamente significativa foi usado tanto o teste exato de Fisher, quanto o teste Qui-quadrado. Em ambos os teste com 95% de confiança a diferença entre os grupos não foi significativa.
 
-```
- 
+
+| Teste       | p-value | Decisão              |
+|-------------|---------|----------------------|
+| Fisher      | 0.07909 | Não rejeitamos $H_0$ |
+| Chi-Squared | 0.1045  | Não rejeitamos $H_0$ |
+
+<br><br>
 
 
 ---
+
 
 # Núvem de palavras
+
+Na questão `O que te leva a beber?`, decidismo deixar a resposta em aberto, para podermos determinar se há algum padrão de comportamento. O resultado pode ser visto no seguinte Word Cloud.
 
 ``` {r, echo = FALSE, warning = FALSE, message = FALSE, out.width = "70%", fig.height = 5}
 library(janitor)
@@ -160,7 +244,7 @@ df5 <- df5 %>%
     o_que_leva_a_beber = tolower(o_que_leva_a_beber)
   ) # joga tudo pra lowercase
 
-df5$o_que_leva_a_beber <- gsub("\\b(bebo|nao|geralmente|estar|apenas|loucona|porque|beber|algo|pra|bebida)\\b", "", df5$o_que_leva_a_beber, ignore.case = TRUE)
+df5$o_que_leva_a_beber <- gsub("\\b(bebo|nao|geralmente|estar|apenas|loucona|porque|beber|algo|pra|bebida|cerveja|alcool|gostar)\\b", "", df5$o_que_leva_a_beber, ignore.case = TRUE)
 
 
 corpus <- df5$o_que_leva_a_beber %>% 
@@ -175,8 +259,23 @@ wordcloud(auxCorpus,max.words=20,colors=c("blue","red"))
 ```
 
 
+---
+# Código e disponibilidade
 
---- 
+O código princiapl usado neste trabalho pode ser encontrado em [https://github.com/ghonoz/Amostragem/blob/main/main.R](https://github.com/ghonoz/Amostragem/blob/main/main.R). Sinta-se livre para copiar ou melhorar nosso código!  
+<center>
+<img src="img/dep/octocat1.svg" width = "250" />
+</center>
+---
+
+
+# Referências
+
+
+1. Morettin, Pedro Alberto, and Wilton Oliveira Bussab. Estatística básica. Saraiva Educação SA, 2017.
+
+2. CAMPOS, Humberto. Estatística Experimental Não-Paramétrica. 4 Ed, Editora ESALQ,
+Piracicaba,1983.
 
 
 
