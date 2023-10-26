@@ -21,7 +21,7 @@ Gabriel Lopes Rubinho - RA: 125009 <br> Lorival Coelho Junior - RA: 124105
 knitr::opts_chunk$set(echo = F, warning = F)
 ```
 
-# 1. introdução
+# 1. Introdução
 
 A pesquisa atual tem por objetivo entender os padrões de consumo de álcool dos estudantes dos cursos de exatas. Para isso, foi aplicado um questionário com os estudantes dos cursos de ciência da computação, estística, física. informática, matemática e química. <br><br>
 
@@ -90,6 +90,8 @@ No gráfico acima vemos a frequência das faixas de gastos por realização ou n
 
 Para verificar se a diferença entre os grupos era estatiscamente significativa foi usado tanto o teste exato de Fisher, quanto o teste Qui-quadrado. Em ambos os teste com 95% de confiança a diferença entre os grupos não foi significativa.
 
+$H_{0}:$ A realização de atividade remunerada e a faixa de gasto mensal são variáveis independentes.
+$H_{1}:$ A realização de atividade remunerada e a faixa de gasto mensal não são variáveis independentes.
 
 | Teste       | p-value | Decisão              |
 |-------------|---------|----------------------|
@@ -103,10 +105,20 @@ Na figura obeservamos que quase 40% daqueles que não bebem são de ciências da
 
 Para testar se o perfil dos alunos de cada curso quanto a ingestão de álcool é estatísticamente significativa, foi realizado o teste de Fisher e Qui-quadrado, e em ambos temos um p-valor bem parecido, visto o tamanho das amostras em cada categoria da tabela de contingência, e rejeitamos $H_0$ utilizando 95% de confiança,
 
+$H_{0}:$ O curso realizado e a ingestão ou não de álcool são variáveis independentes.
+$H_{1}:$ O curso realizado e a ingestão ou não de álcool não são variáveis independentes.
+
 | Teste       | p-value  | Decisão          |
 |-------------|----------|------------------|
 | Fisher      | 0.003528 | Rejeitamos $H_0$ |
-| Chi-Squared | 0.003404 | Rejeitamos $H_0$ | <br><br><br><br>
+| Chi-Squared | 0.003404 | Rejeitamos $H_0$ | <br><br>
+
+
+![](img/uni/nuvem.png)
+<br>
+Para a pergunta aberta, "O que te leva a beber?" houve respostas variadas, as palavras mais repetidas estão na nuvem acima, sendo muitos pelo sabor, para socialzar, para curtir festas, entre outros motivos.
+
+<br><br><br><br>
 
 # 4. Conclusão
 Enfim, após a análise das respostas do questionário podemos chegar a algumas conclusões: A maioria dos alunos dos cursos de exatas ingerem álcool, daqueles que não ingerem quase todos já ingeriram anteriormente. Quanto ao local onde é ingerido álcool por mais indivíduo é em bares. Para os sintomas gerados pelo álcool, 90% dos indivíduos que bebem já tiveram algum sintoma, sendo ressaca o mais comum, no entanto normalmente esses sintomas não atrapalham trabalho ou estudo. Quanto a frequência semanal de consumo de bebidas, o intervalo mais frequente é de zero a uma vez. Na amostra, apenas indivíduos que trabalham tiveram gasto médio maior que 100 reais mensal, independente se trabalha ou não a faixa mais frequente de gasto é de 0 a 50. Quanto a relação de curso e ingestão ou não de álcool, foi verificado que há diferença significativa, tendo o curso de Ciência da computação com mais indivíduos que não bebem e os curso de estatística e química com mais indivíduos que bebem.
