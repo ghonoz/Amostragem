@@ -19,7 +19,7 @@ use_logo(
   "img/dep/des.PNG",
   width = "125px",
   height = "135px",
-  position = css_position(top = "1em", right = "5em"),
+  position = css_position(top = "3em", right = "5em"),
   link_url = NULL,
   exclude_class = c("title-slide", "inverse", "hide_logo")
 )
@@ -69,30 +69,71 @@ O questionário continha perguntas como:
 
 Os dados foram extraídos de um arquivo `.csv`, o qual pode ser visto a seguir
 
-```{r}
+```{r, warning = FALSE, echo=FALSE}
 library(kableExtra)
-load('df4.Rdata')
-knitr::kable(head(df4)) %>% 
-  kableExtra::kable_styling(font_size = 4)
+load('dfkable.Rdata')
+knitr::kable(head(df_kable)) %>% 
+  kableExtra::kable_styling(font_size = 10)
 ```
 
+???
+
+Observação: nossos dados contém 12 colunas, portanto, o mostrado é uma pequena parte.
+---
+# Metodologia
+
+A análise dos dados foram feitas com o pacote `ggplot2`, o qual é uma ferramenta muito útil para visualizações, e sua documentação está disponível no site a seguir: [ggplot](https://ggplot2.tidyverse.org). Os dados também têm inconsistências que precisam ser tratadas. Para a limpeza, foi-se utilizado o pacote `dplyr`, com documentação no site [dplyr](https://dplyr.tidyverse.org).  
+Além disso, foi-se utilizado, também, o pacote `tm` (Text Mining), para a geração dos gráficos de núvem.
+<center>
+.pull-left[
+<img src="img/gg/ggplot.png" width = "250" />
+]
+
+.pull-right[
+<img src = "img/gg/dplyr.png" width = "250" />
+]
+</center>
 
 ---
+
 class: inverse, center, middle
 
-# Get Started
+<font size = "+6">Análise dos resultados</font>
 
 ---
 
-# Hello World
+# Lugar onde bebe
 
-Install the **xaringan** package from [Github](https://github.com/yihui/xaringan):
+```{r, echo = FALSE, out.width = "90%"}
 
-```{r eval=FALSE, tidy=FALSE}
-remotes::install_github("yihui/xaringan")
+load(file = 'testando2.Rdata')
+testeee1
+
+
 ```
 
---
+Teste teste teste
+
+---
+# Curso
+
+.pull-left[
+testeee1
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 You are recommended to use the [RStudio IDE](https://www.rstudio.com/products/rstudio/), but you do not have to.
 

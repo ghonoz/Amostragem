@@ -16,7 +16,7 @@ df <- read.csv('questionario_alcool.csv',
                sep = ',', 
                fileEncoding = 'UTF-8',
                header = TRUE)
-
+df5
 df <- df %>% janitor::clean_names() # limpeza de nomes de colunas, mas não precisava
 df1 <- df[,-1] # tirando a primeira coluna, é inútil 
 
@@ -138,6 +138,9 @@ df4$gasto_mensal <- gsub('.*50 a 100.*', '50 a 100 reais', df4$gasto_mensal)
 
 
 write.csv(df4, file = 'dados_corrigidos.csv', fileEncoding = 'UTF-8',)      # Pro relatório
+save(df4, file = 'df4.Rdata')
+
+
 
 
 
