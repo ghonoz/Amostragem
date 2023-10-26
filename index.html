@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Consumo de álcool entre os estudantes de exatas da Universidade Estadual de Maringá (UEM)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Gabriel Lopes Rubinho - RA 125009   Lorival Coelho Junior - RA 124105" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <script src="index_files/kePrint/kePrint.js"></script>
+    <link href="index_files/lightable/lightable.css" rel="stylesheet" />
+    <script src="index_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="index_files/plotly-binding/plotly.js"></script>
+    <script src="index_files/typedarray/typedarray.min.js"></script>
+    <script src="index_files/jquery/jquery.min.js"></script>
+    <link href="index_files/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="index_files/crosstalk/js/crosstalk.min.js"></script>
+    <link href="index_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="index_files/plotly-main/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Consumo de álcool entre os estudantes de exatas da Universidade Estadual de Maringá (UEM)
+]
+.author[
+### Gabriel Lopes Rubinho - RA 125009 <br> Lorival Coelho Junior - RA 124105
+]
+.institute[
+### Universidade Estadual de Maringá
+]
+
+---
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 125px;
+height: 135px;
+z-index: 0;
+background-image: url(img/dep/des.PNG);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:3em;right:5em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+
+
+# Introdução
+Se é de amplo conhecimento que as bebidas alcóolicas fazem parte do dia-a-dia dos brasileiros, não a toa as festas as quais celebramos como natal, ano novo, páscoa, sempre envolvem essas bebidas.  
+Quando se chega a fase universitária, não é diferente. Muitos jovens começam a beber nessa idade, indo as festas e, também, por conta das pessoas que o rodeiam. 
+
+# Objetivo
+
+Verificar o perfil (análise exploratória e testes, o que acha?) de consumo de álcool entre os estudantes de Estatística, Matemática, Física e Química na Universidade Estadual de Maringá.
+
+---
+
+# Metodologia
+Através de Amostragem por Conveniência, foi-se se enviado e-mails para os estudantes dos cursos de interesse com um questionário no dia 18/10, e foi fechado dia 21/10, após a obtenção de 149 respostas.  &lt;br&gt;&lt;br&gt;
+
+O questionário continha perguntas como:
+- Qual o curso da graduação você realiza?  &lt;br&gt;
+- Você ingere bebidas alcóolicas?  &lt;br&gt;
+- Você bebe álcool em quais situações?  &lt;br&gt;
+- Caso beba, quantos em média você costuma gastar por mês com álcool?  &lt;br&gt;
+- Caso beba, o que te leva a beber?  &lt;br&gt;
+
+
+ 
+
+---
+
+# Metodologia
+
+Os dados foram extraídos de um arquivo `.csv`, o qual pode ser visto a seguir
+
+&lt;table class="table" style="font-size: 10px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Curso &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Ingere Álcool &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Situações em que bebe &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Quantos gasta &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; O que leva a beber &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ciência da Computação &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Não &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Casa, Não bebo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Não bebo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Matemática &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sim &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Casa, Bares, Outros ambientes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; De 50 a 100 reais &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Prazer &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Química &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sim &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Festas Universitárias &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; De 0 a 20 reais &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Química &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sim &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Casa, Bares, Festas Universitárias, Outros ambientes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Mais de 100 reais &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Meu trabalho, pois sou cervejeiro e trabalho tenho que provar as cervejas que faço &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Matemática &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Não &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Bares, Outros ambientes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; De 0 a 20 reais &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Matemática &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sim &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Casa &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; De 0 a 20 reais &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Comemorações &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+???
+
+Observação: nossos dados contém 12 colunas, portanto, o mostrado é uma pequena parte.
+---
+# Metodologia
+
+A análise dos dados foram feitas com o pacote `ggplot2`, o qual é uma ferramenta muito útil para visualizações, e sua documentação está disponível no site a seguir: [ggplot](https://ggplot2.tidyverse.org). Os dados também têm inconsistências que precisam ser tratadas. Para a limpeza, foi-se utilizado o pacote `dplyr`, com documentação no site [dplyr](https://dplyr.tidyverse.org).  
+Além disso, foi-se utilizado, também, o pacote `tm` (Text Mining), para a geração dos gráficos de núvem.
+&lt;center&gt;
+.pull-left[
+&lt;img src="img/gg/ggplot.png" width = "250" /&gt;
+]
+
+.pull-right[
+&lt;img src = "img/gg/dplyr.png" width = "250" /&gt;
+]
+&lt;/center&gt;
+
+---
+
+class: inverse, center, middle
+
+&lt;font size = "+6"&gt;Análise dos resultados&lt;/font&gt;
+
+---
+
+
+
+
+
+# Curso
+
+<div id="htmlwidget-fb3b3b8f643c985bd094" style="width:90%;height:504px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fb3b3b8f643c985bd094">{"x":{"data":[{"orientation":"v","width":0.8,"base":0,"x":[1],"y":[36],"text":"reorder(Var1, -Freq): Matemática<br />Freq: 36<br />reorder(Var1, -Freq): Matemática","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Matemática","legendgroup":"Matemática","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.8,"base":0,"x":[2],"y":[34],"text":"reorder(Var1, -Freq): Ciência da Computação<br />Freq: 34<br />reorder(Var1, -Freq): Ciência da Computação","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Ciência da Computação","legendgroup":"Ciência da Computação","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.8,"base":0,"x":[3],"y":[31],"text":"reorder(Var1, -Freq): Estatística<br />Freq: 31<br />reorder(Var1, -Freq): Estatística","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(77,175,74,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Estatística","legendgroup":"Estatística","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.8,"base":0,"x":[4],"y":[25],"text":"reorder(Var1, -Freq): Informática<br />Freq: 25<br />reorder(Var1, -Freq): Informática","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(152,78,163,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Informática","legendgroup":"Informática","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.800000000000001,"base":0,"x":[5],"y":[23],"text":"reorder(Var1, -Freq): Química<br />Freq: 23<br />reorder(Var1, -Freq): Química","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,127,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Química","legendgroup":"Química","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":42.6486497938967,"r":7.30593607305936,"b":11.7046896444571,"l":40.1826484018265},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Curso realizado","font":{"color":"rgba(0,0,0,1)","family":"","size":18.5969281859693},"x":0.5,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,5.6],"tickmode":"array","ticktext":["Matemática","Ciência da Computação","Estatística","Informática","Química"],"tickvals":[1,2,3,4,5],"categoryorder":"array","categoryarray":["Matemática","Ciência da Computação","Estatística","Informática","Química"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":false,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.8,37.8],"tickmode":"array","ticktext":["0","10","20","30"],"tickvals":[0,10,20,30],"categoryorder":"array","categoryarray":["0","10","20","30"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":13.2835201328352},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Frequência","font":{"color":"rgba(0,0,0,1)","family":"","size":15.9402241594022}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"Curso","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"30ecefe5276":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"30ecefe5276","visdat":{"30ecefe5276":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+# Ingestão
+
+<div id="htmlwidget-4004bc4aa54a6691efb2" style="width:90%;height:504px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4004bc4aa54a6691efb2">{"x":{"data":[{"orientation":"v","width":0.8,"base":0,"x":[1],"y":[56],"text":"reorder(Var1, Freq): Não<br />Freq: 56<br />reorder(Var1, Freq): Não","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Não","legendgroup":"Não","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.8,"base":0,"x":[2],"y":[93],"text":"reorder(Var1, Freq): Sim<br />Freq: 93<br />reorder(Var1, Freq): Sim","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Sim","legendgroup":"Sim","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":42.4700533811516,"r":7.30593607305936,"b":11.526093231712,"l":40.1826484018265},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Gráfico de barras da ingestão ou não de álcool","font":{"color":"rgba(0,0,0,1)","family":"","size":18.5969281859693},"x":0.5,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,2.6],"tickmode":"array","ticktext":["Não","Sim"],"tickvals":[1,2],"categoryorder":"array","categoryarray":["Não","Sim"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":false,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-4.65,97.65],"tickmode":"array","ticktext":["0","25","50","75"],"tickvals":[0,25,50,75],"categoryorder":"array","categoryarray":["0","25","50","75"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":13.2835201328352},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Frequência","font":{"color":"rgba(0,0,0,1)","family":"","size":15.9402241594022}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"Ingere álcool?","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"4e0463455883":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"4e0463455883","visdat":{"4e0463455883":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+ 
+---
+
+# Atividade Remunerada
+
+<div id="htmlwidget-9a4909c89012c9bebce2" style="width:90%;height:504px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9a4909c89012c9bebce2">{"x":{"data":[{"orientation":"v","width":0.8,"base":0,"x":[1],"y":[51],"text":"reorder(Var1, Freq): Não<br />Freq: 51<br />reorder(Var1, Freq): Não","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Não","legendgroup":"Não","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.8,"base":0,"x":[2],"y":[98],"text":"reorder(Var1, Freq): Sim<br />Freq: 98<br />reorder(Var1, Freq): Sim","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Sim","legendgroup":"Sim","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":42.4700533811516,"r":7.30593607305936,"b":11.526093231712,"l":46.8244084682441},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Gráfico de barras da realização de atividade remunerada","font":{"color":"rgba(0,0,0,1)","family":"","size":18.5969281859693},"x":0.5,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,2.6],"tickmode":"array","ticktext":["Não","Sim"],"tickvals":[1,2],"categoryorder":"array","categoryarray":["Não","Sim"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":false,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-4.9,102.9],"tickmode":"array","ticktext":["0","25","50","75","100"],"tickvals":[0,25,50,75,100],"categoryorder":"array","categoryarray":["0","25","50","75","100"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":13.2835201328352},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Frequência","font":{"color":"rgba(0,0,0,1)","family":"","size":15.9402241594022}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"Realiza atividade?","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"4e04621910f":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"4e04621910f","visdat":{"4e04621910f":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+
+
+---
+
+
+# Lugar onde bebe
+
+<div id="htmlwidget-bdf8f1a3fe72f8716aac" style="width:90%;height:504px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bdf8f1a3fe72f8716aac">{"x":{"data":[{"orientation":"v","width":0.6,"base":0,"x":[1],"y":[78],"text":"valores_gerais: Bares<br />Freq: 78<br />valores_gerais: Bares","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Bares","legendgroup":"Bares","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.6,"base":0,"x":[2],"y":[72],"text":"valores_gerais: Casa<br />Freq: 72<br />valores_gerais: Casa","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Casa","legendgroup":"Casa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.6,"base":0,"x":[3],"y":[58],"text":"valores_gerais: Festas Universitárias<br />Freq: 58<br />valores_gerais: Festas Universitárias","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(77,175,74,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Festas Universitárias","legendgroup":"Festas Universitárias","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.6,"base":0,"x":[4],"y":[49],"text":"valores_gerais: Não bebo<br />Freq: 49<br />valores_gerais: Não bebo","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(152,78,163,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Não bebo","legendgroup":"Não bebo","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.6,"base":0,"x":[5],"y":[46],"text":"valores_gerais: Outros ambientes<br />Freq: 46<br />valores_gerais: Outros ambientes","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,127,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Outros ambientes","legendgroup":"Outros ambientes","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":39.7786322377863,"r":7.30593607305936,"b":8.83467208834672,"l":40.1826484018265},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Número de ambientes que se toma álcool","font":{"color":"rgba(0,0,0,1)","family":"","size":18.5969281859693},"x":0.5,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,5.6],"tickmode":"array","ticktext":["Bares","Casa","Festas Universitárias","Não bebo","Outros ambientes"],"tickvals":[1,2,3,4,5],"categoryorder":"array","categoryarray":["Bares","Casa","Festas Universitárias","Não bebo","Outros ambientes"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":false,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":15.9402241594022}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-3.9,81.9],"tickmode":"array","ticktext":["0","20","40","60","80"],"tickvals":[4.44089209850063e-16,20,40,60,80],"categoryorder":"array","categoryarray":["0","20","40","60","80"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":13.2835201328352},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Frequência","font":{"color":"rgba(0,0,0,1)","family":"","size":15.9402241594022}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"Lugares","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"4e045975833":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"4e045975833","visdat":{"4e045975833":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+
+
+---
+
+
+# Núvem de palavras
+
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="70%" /&gt;
+
+
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
