@@ -1,7 +1,3 @@
-install.packages('tm')
-install.packages('wordcloud')
-install.packages("SnowballC")
-install.packages('plotly')
 library(janitor)
 library(ggplot2)
 library(forcats)
@@ -18,7 +14,7 @@ df <- read.csv('questionario_alcool.csv',
                sep = ',', 
                fileEncoding = 'UTF-8',
                header = TRUE)
-df5
+
 df <- df %>% janitor::clean_names() # limpeza de nomes de colunas, mas não precisava
 df1 <- df[,-1] # tirando a primeira coluna, é inútil 
 View(df1)
@@ -255,22 +251,6 @@ save(plotly_curso, file = 'curso.Rdata')
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ggsave('img/uni/curso.jpg', width = 10, height = 8)
 
 ## Ingestão de alcool
@@ -425,6 +405,27 @@ ggsave('img/bi/remuneracaoXgasto.jpg', width = 10, height = 8)
 
 
 
+df_teste <- data.frame(table(df4$ingere_alcool, df4$curso)) 
+# Fazendo um dataframe da frequência das variáveis de interesse
+
+ggplot(data = df_teste, aes(x = Var2, y = Freq, fill = Var1)) +
+  geom_bar(stat = "identity", width = 0.8, color = 'black', position =  "dodge") +
+  labs(title = "Distribuição por curso da ingestão de álcool", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Ingestão de álcool')) + 
+  theme_minimal() +
+  formato+
+  scale_fill_brewer(palette = "Set1") +
+  
+  geom_label(aes(                                    # Adicionando o número nas barras com posição dodge
+    label = sprintf(
+      '%s (%s)',
+      x = Freq,
+      pct_format((Freq / sum(Freq)))
+    ), group = Var2), position = position_dodge2(width = 0.9, preserve ='total'),
+    col = "black", fill='white',vjust = -.2)
+ggsave('img/bi/ingestaoXcurso.jpg', width = 10, height = 8)
+
 
 # Tentativa de Word Cloud -------------------------------------------------
 
@@ -469,12 +470,18 @@ wordcloud(words = auxCorpus, scale = c(3, 0.5), min.freq = 1, colors = brewer.pa
 
 
 
+df_teste <- df4[df4$gasto_mensal != 'Não bebo',]
+table(df_teste$atividade_remunerada, df_teste$gasto_mensal)
+fisher.test(df_teste$atividade_remunerada, df_teste$gasto_mensal)
+chisq.test(df_teste$atividade_remunerada, df_teste$gasto_mensal, correct =T)
+
+fisher.test(table(df_teste$atividade_remunerada, df_teste$gasto_mensal))
 
 
 
 
-
-
-
-
+fisher.test(df4$curso, df4$ingere_alcool)
+chisq.test(df4$curso, df4$ingere_alcool, correct =F)
+  
+help(barplot)
 

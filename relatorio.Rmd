@@ -35,7 +35,7 @@ O questionário aplicado é constituído de 12 questões, sendo elas 9 com respo
 ![](img/questionario/12.png)
 ![](img/questionario/13.png)
 
-
+<br><br><br><br>
 
 
 
@@ -59,10 +59,31 @@ Na amostra temos que a maioria dos indivíduos realizam atividade remunerada, ap
 
 # 3. Resultados
 
-Algumas análises foram feitas para entender o comportamento dos dados e bla bla bla
+Algumas análises foram feitas para entender o comportamento dos dados de forma exploratória e também comparar certos grupos.
+<br><br>
 
 ![](img/bi/remuneracaoXgasto.jpg)
-No gráfico acima vemos a frequência das faixas de gastos por realização ou não de atividade remunerada, percebe-se que na última faixa, mais de 100 reais, há apenas indivíduos que realizam e na faixa 50 a 100 reais, a categoria que não realiza cai mais sua frequência relativamente.
+No gráfico acima vemos a frequência das faixas de gastos por realização ou não de atividade remunerada, percebe-se que na última faixa, mais de 100 reais, há apenas indivíduos que realizam e na faixa 50 a 100 reais, a categoria que não realiza cai mais sua frequência relativamente. <br><br>
+
+Para verificar se a diferença entre os grupos era estatiscamente significativa foi usado tanto o teste exato de Fisher, quanto o teste Qui-quadrado. Em ambos os teste com 95% de confiança a diferença entre os grupos não foi significativa.
+
+
+| Teste       | p-value | Decisão              |
+|-------------|---------|----------------------|
+| Fisher      | 0.07909 | Não rejeitamos $H_0$ |
+| Chi-Squared | 0.1045  | Não rejeitamos $H_0$ |
+
+<br><br>
+
+![](img/bi/ingestaoXcurso.jpg)
+Na figura obeservamos que quase 40% daqueles que não bebem são de ciências da computação, enquanto os cursos de estatística e química estão bem desbalanceados entre as duas categorias tendo muito mais indivíduos que bebem, já para matemática e informática, mesmo a maioria bebendo as categorias estão mais balanceadas. <br><br>
+
+Para testar se o perfil dos alunos quanto a ingestão de álcool é estatísticamente significativa, foi realizado o teste de Fisher e Qui-quadrado, e em ambos temos um p-valor bem parecido, visto o tamanho das amostras em cada categoria da tabela de contingência, e rejeitamos $H_0$ utilizando 95% de confiança,
+
+| Teste       | p-value  | Decisão          |
+|-------------|----------|------------------|
+| Fisher      | 0.003528 | Rejeitamos $H_0$ |
+| Chi-Squared | 0.003404 | Rejeitamos $H_0$ |
 
 # 4. Conclusão
 
