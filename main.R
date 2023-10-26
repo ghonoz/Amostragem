@@ -287,12 +287,6 @@ ggplot(df4, aes(x = curso, fill = ingere_alcool)) +
 
 
 
-
-
-
-
-
-
   # outro gráfico ingestão alcool
 
 data.curso <- data.frame(table(df4$ingere_alcool))  # gráfico univariado de barras para ingestão de alcool
@@ -307,14 +301,6 @@ alcool <- ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill 
 
 plotly_ingestao <- ggplotly(alcool)
 save(plotly_ingestao, file = 'ingestao.Rdata')
-
-
-
-
-#
-
-
-
 
 
 
@@ -379,6 +365,53 @@ ggsave('img/uni/remuneracao.jpg', width = 10, height = 8)
 
 
 # Análises ----------------------------------------------------------------
+
+
+ggplot(data = teste, aes(x = reorder(valores_gerais, Freq), y = Freq, fill = valores_gerais)) +
+  geom_bar(stat = "identity", width = 0.6, color = 'black') +
+  labs(title = "Frequência dos ambientes onde se toma álcool", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Lugares')) + 
+  theme_minimal() +
+  formato+
+  #theme(legend.position="none")+
+  scale_fill_brewer(palette = "Set1") +
+  coord_flip()+
+  geom_label(aes(                                  # Adicionando o número nas barras
+    label = sprintf(
+      '%d (%s)',
+      Freq,
+      pct_format(Freq / sum(Freq))
+    )), stat='identity', fill='white', hjust = 1.1)
+ggsave('img/uni/ambientes.jpg', width = 10, height = 8)
+  
+
+valores <- strsplit(df4$sintomas, ', ') 
+df_teste <- data.frame(table(unlist(valores)))
+
+
+ggplot(data = df_teste, aes(x = reorder(Var1, Freq), y = Freq, fill = Var1)) +
+  geom_bar(stat = "identity", width = 0.6, color = 'black') +
+  labs(title = "Frequência dos ambientes onde se toma álcool", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Lugares')) + 
+  ylim(0, 70)+
+  theme_minimal() +
+  formato+
+  #theme(legend.position="none")+
+  scale_fill_brewer(palette = "Set1") +
+  coord_flip()+
+  geom_label(aes(                                  # Adicionando o número nas barras
+    label = sprintf(
+      '%d (%s)',
+      Freq,
+      pct_format(Freq / sum(Freq))
+    )), stat='identity', fill='white', hjust = .5)
+ggsave('img/uni/sintomas.jpg', width = 10, height = 8)
+
+
+
+
 
 df_teste <- df4[df4$gasto_mensal != 'Não bebo',]
 df_teste <- data.frame(table(df_teste$atividade_remunerada, df_teste$gasto_mensal)) 
@@ -484,4 +517,5 @@ fisher.test(df4$curso, df4$ingere_alcool)
 chisq.test(df4$curso, df4$ingere_alcool, correct =F)
   
 help(barplot)
+
 

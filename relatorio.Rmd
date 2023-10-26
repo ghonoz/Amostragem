@@ -62,6 +62,13 @@ Na amostra temos que a maioria dos indivíduos realizam atividade remunerada, ap
 Algumas análises foram feitas para entender o comportamento dos dados de forma exploratória e também comparar certos grupos.
 <br><br>
 
+![](img/uni/ambientes.jpg)
+O gráfico acima, mostra que o local mais frequente onde os indivíduos consomem álcool são bares, seguido por casa, festas universitárias e por último outros ambientes que as opções não abordaram.<br><br>
+
+
+
+
+
 ![](img/bi/remuneracaoXgasto.jpg)
 No gráfico acima vemos a frequência das faixas de gastos por realização ou não de atividade remunerada, percebe-se que na última faixa, mais de 100 reais, há apenas indivíduos que realizam e na faixa 50 a 100 reais, a categoria que não realiza cai mais sua frequência relativamente. <br><br>
 
