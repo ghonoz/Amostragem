@@ -92,14 +92,13 @@ grafico_bebeOnde2 <-ggplot(data = teste, aes(x = valores_gerais, y = Freq, fill 
   guides(fill = guide_legend(title = 'Lugares')) + 
   theme_minimal() +
   formato+
-  scale_fill_brewer(palette = "Set1") +
-  coord_flip() + theme(                                                       
+  scale_fill_brewer(palette = "Set1") + theme(                                                       
     plot.title = element_text(size = 14, hjust = 0.5),
-    #axis.title.y = element_text(size = 12, vjust = 0.5, angle= 90),
-    axis.title.x = element_text(size = 12, vjust = -0.2),
-    #axis.text.y = element_text(size = 10),
-    axis.text.y = element_blank(),
-    axis.text.x = element_text(size = 10)
+    axis.title.y = element_text(size = 12, vjust = 0.5, angle= 90),
+    #axis.title.x = element_text(size = 12, vjust = -0.2),
+    axis.text.y = element_text(size = 10),
+    axis.text.x = element_blank(),
+    #axis.text.x = element_text(size = 10)
 )
 
 
@@ -273,6 +272,26 @@ ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(
 ggsave('img/uni/ingestao.jpg', width = 10, height = 8)
 
 
+# PLOTLY ABAIXO
+
+ingere<-ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(Var1, Freq))) +
+  geom_bar(stat = "identity", width = 0.8, color = 'black') +
+  labs(title = "Gráfico de barras da ingestão ou não de álcool", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Ingere álcool?')) + 
+  theme_minimal() +
+  formato1+
+  scale_fill_brewer(palette = "Set1")
+
+ingestao <- ggplotly(ingere)
+save(ingestao, file = 'ingestao_alcool.Rdata')
+
+
+
+
+
+
+
 
 
 
@@ -343,6 +362,28 @@ ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(
       pct_format(Freq / sum(Freq))
     )), stat='identity', fill='white', vjust=1.2)
 ggsave('img/uni/remuneracao.jpg', width = 10, height = 8)
+
+
+
+# grafico acima com plotly
+
+data.curso <- data.frame(table(df4[df4$atividade_remunerada != '',]$atividade_remunerada))
+atividade <- ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(Var1, Freq))) +
+  geom_bar(stat = "identity", width = 0.8, color = 'black') +
+  labs(title = "Gráfico de barras da realização de atividade remunerada", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Realiza atividade?')) + 
+  theme_minimal() +
+  formato1+
+  scale_fill_brewer(palette = "Set1") 
+
+atividade_remunerada <- ggplotly(atividade)
+save(atividade_remunerada, file ='realizaAtividade.Rdata')
+
+
+
+
+
 
 # Criando um dataframe para aqueles que preencheram a questão
 data.curso <- data.frame(table(df4[df4$tipo_atividade_remunerada != '',]$tipo_atividade_remunerada))
