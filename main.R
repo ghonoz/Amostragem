@@ -87,7 +87,7 @@ grafico_bebeOnde1 <-ggplot(data = teste, aes(x = valores_gerais, y = Freq, fill 
 
 grafico_bebeOnde2 <-ggplot(data = teste, aes(x = valores_gerais, y = Freq, fill = valores_gerais)) +
   geom_bar(stat = "identity", width = 0.6, color = 'black') +
-  labs(title = "Número de ambientes que se toma álcool", 
+  labs(title = "Frequência dos ambientes onde se toma álcool", 
        x = "", y = "Frequência") +
   guides(fill = guide_legend(title = 'Lugares')) + 
   theme_minimal() +
@@ -190,7 +190,7 @@ names(df4)
 
 ## Curso
 data.curso <- data.frame(table(df4$curso))     # gráfico univariado de barras para o curso
-ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) +
+curso_realizacao <- ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) +
   geom_bar(stat = "identity", width = 0.8, color = 'black') +
   labs(title = "Curso realizado", 
        x = "", y = "Frequência") +
@@ -205,6 +205,7 @@ ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder
       Freq,
       pct_format(Freq / sum(Freq))
     )), stat='identity', fill='white', vjust=1.2)
+save(curso_realizacao, file = 'tentativa_curso')
 
 ggsave('img/uni/curso.jpg', width = 10, height = 8)
 
@@ -424,14 +425,49 @@ ggplot(data = teste, aes(x = reorder(valores_gerais, Freq), y = Freq, fill = val
       Freq,
       pct_format(Freq / sum(Freq))
     )), stat='identity', fill='white', hjust = 1.1)
+
+
+
 ggsave('img/uni/ambientes.jpg', width = 10, height = 8)
+
+
+# FAZENDO COM PLOTLY
+
+lugares <- ggplot(data = teste, aes(x = reorder(valores_gerais, Freq), y = Freq, fill = valores_gerais)) +
+  geom_bar(stat = "identity", width = 0.6, color = 'black') +
+  labs(title = "Frequência dos ambientes onde se toma álcool", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Lugares')) + 
+  theme_minimal() +
+  formato1+
+  #theme(legend.position="none")+
+  scale_fill_brewer(palette = "Set1")
+
+lugaress <- ggplotly(lugares)
+save(lugaress, file ='lugares.Rdata')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 
 valores <- strsplit(df4$sintomas, ', ') 
 df_teste <- data.frame(table(unlist(valores)))
 
 
-ggplot(data = df_teste, aes(x = reorder(Var1, Freq), y = Freq, fill = Var1)) +
+aaa <- ggplot(data = df_teste, aes(x = reorder(Var1, Freq), y = Freq, fill = Var1)) +
   geom_bar(stat = "identity", width = 0.6, color = 'black') +
   labs(title = "Frequência dos sintomas gerados pelo álcool", 
        x = "", y = "Frequência") +
@@ -448,7 +484,50 @@ ggplot(data = df_teste, aes(x = reorder(Var1, Freq), y = Freq, fill = Var1)) +
       Freq,
       pct_format(Freq / sum(Freq))
     )), stat='identity', fill='white', hjust = .5)
+
+ggplotly(aaa)
 ggsave('img/uni/sintomas.jpg', width = 10, height = 8)
+
+
+
+# fazendo com plotly
+
+
+sintomas <- ggplot(data = df_teste, aes(x = reorder(Var1, Freq), y = Freq, fill = Var1)) +
+  geom_bar(stat = "identity", width = 0.6, color = 'black') +
+  labs(title = "Frequência dos sintomas gerados pelo álcool", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Sintoma')) + 
+  ylim(0, 70)+
+  theme_minimal() +
+  formato1+
+  #theme(legend.position="none")+
+  scale_fill_brewer(palette = "Set1")
+
+sintoms <- ggplotly(sintomas)
+save(sintoms, file ='siy.Rdata')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 df4$frequencia <- fct_relevel(factor((df4$frequencia), levels=c('Nenhuma vez','Zero a uma vez',  "Uma a duas vezes", "Mais de duas vezes"  )))
 data.curso <- data.frame(table(df4$frequencia))
@@ -470,6 +549,34 @@ ggplot(data = data.curso, aes(x = Var1, y = Freq, fill = Var1)) +
       pct_format(Freq / sum(Freq))
     )), stat='identity', fill='white', vjust = 1.15)
 ggsave('img/uni/freq.jpg', width = 10, height = 8)
+
+
+
+
+# fazendo com plotly
+
+frequencyy <- ggplot(data = data.curso, aes(x = Var1, y = Freq, fill = Var1)) +
+  geom_bar(stat = "identity", width = 0.6, color = 'black') +
+  labs(title = "Frequência semanal de ingestão de álcool", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Frequência')) + 
+  theme_minimal() +
+  
+  formato1+
+  #theme(legend.position="none")+
+  scale_fill_brewer(palette = "Set1")
+fre <- ggplotly(frequencyy)
+save(fre, file ='frequenciaaaaa.Rdata')
+
+
+
+
+
+
+
+
+
+
 
 
 data.curso <- data.frame(table(gsub('Nunca tive','Nunca tive sintomas',df4$ja_teve_problemas)))
@@ -515,6 +622,30 @@ ggplot(data = df_teste, aes(x = Var2, y = Freq, fill = Var1)) +
       pct_format((Freq / sum(Freq)))
     ), group = Var2), position = position_dodge2(width = 0.9, preserve ='total'),
     col = "black", fill='white',vjust = -.2)
+
+
+
+
+
+# fazendo com plotly
+
+
+atv <- ggplot(data = df_teste, aes(x = Var2, y = Freq, fill = Var1)) +
+  geom_bar(stat = "identity", width = 0.8, color = 'black', position =  "dodge") +
+  labs(title = "Realização de atividade remunerada X Faixa de gasto", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Realização de atividade')) + 
+  theme_minimal() +
+  formato+
+  scale_fill_brewer(palette = "Set1")
+
+
+atv_faixa <- ggplotly(atv)
+save(atv_faixa, file ='atividadeporfaixa.Rdata')
+
+
+
+
 ggsave('img/bi/remuneracaoXgasto.jpg', width = 10, height = 8)
 
 
