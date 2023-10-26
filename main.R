@@ -1,6 +1,7 @@
 install.packages('tm')
 install.packages('wordcloud')
 install.packages("SnowballC")
+install.packages('plotly')
 library(janitor)
 library(ggplot2)
 library(forcats)
@@ -9,6 +10,7 @@ library(tm)
 library(stringi)
 library(wordcloud)
 library(SnowballC)
+library(plotly)
 
 pct_format = scales::percent_format(accuracy = .1)
 
@@ -19,6 +21,20 @@ df <- read.csv('questionario_alcool.csv',
 df5
 df <- df %>% janitor::clean_names() # limpeza de nomes de colunas, mas não precisava
 df1 <- df[,-1] # tirando a primeira coluna, é inútil 
+View(df1)
+ncol(df4)
+
+
+df_kable <- df1 %>% 
+  select(qual_o_curso_da_graduacao_voce_realiza, voce_ingere_bebidas_alcoolicas, voce_bebe_alcool_em_quais_situacoes, caso_beba_quantos_em_media_voce_costuma_gastar_por_mes_com_alcool, 
+         caso_beba_o_que_te_leva_a_beber)
+
+View(df_kable)
+colnames(df_kable) <- c('Curso', 'Ingere Álcool', 
+                        'Situações em que bebe', 'Quantos gasta', 
+                        'O que leva a beber')
+
+save(df_kable, file = 'dfkable.Rdata')
 
 antigo_nomes <- as.vector(colnames(df1))
 novos_nomes <- c('curso', 'atividade_remunerada', 'tipo_atividade_remunerada',
@@ -70,8 +86,30 @@ grafico_bebeOnde1 <-ggplot(data = teste, aes(x = valores_gerais, y = Freq, fill 
   guides(fill = guide_legend(title = 'Lugares')) + 
   theme_minimal() +
   formato+
-  scale_fill_brewer(palette = "Set1") 
+  scale_fill_brewer(palette = "Set1") +
+  coord_flip()
 
+grafico_bebeOnde2 <-ggplot(data = teste, aes(x = valores_gerais, y = Freq, fill = valores_gerais)) +
+  geom_bar(stat = "identity", width = 0.6, color = 'black') +
+  labs(title = "Número de ambientes que se toma álcool", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Lugares')) + 
+  theme_minimal() +
+  formato+
+  scale_fill_brewer(palette = "Set1") +
+  coord_flip() + theme(                                                       
+    plot.title = element_text(size = 14, hjust = 0.5),
+    #axis.title.y = element_text(size = 12, vjust = 0.5, angle= 90),
+    axis.title.x = element_text(size = 12, vjust = -0.2),
+    #axis.text.y = element_text(size = 10),
+    axis.text.y = element_blank(),
+    axis.text.x = element_text(size = 10)
+)
+
+
+
+testeee1 <- ggplotly(grafico_bebeOnde2)
+save(testeee1, file = 'testando2.Rdata')
 # chatgpt ajudou a customizar
 
 
@@ -173,6 +211,66 @@ ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder
       pct_format(Freq / sum(Freq))
     )), stat='identity', fill='white', vjust=1.2)
 
+
+
+
+
+
+
+
+# fazendo outro gráfico pra curso
+
+
+
+formato1 <- theme(                                                       
+  plot.title = element_text(size = 14, hjust = 0.5),
+  axis.title.y = element_text(size = 12, vjust = 0.5, angle= 90),
+  #axis.title.x = element_text(size = 12, vjust = -0.2),
+  axis.text.y = element_text(size = 10),
+  #axis.text.x = element_text(size = 10)
+  axis.text.x = element_blank()
+)
+
+
+
+
+
+
+
+
+## Curso
+data.curso <- data.frame(table(df4$curso))     # gráfico univariado de barras para o curso
+curso_graph <- ggplot(data = data.curso, aes(x = reorder(Var1, -Freq), y = Freq, fill = reorder(Var1, -Freq))) +
+  geom_bar(stat = "identity", width = 0.8, color = 'black') +
+  labs(title = "Curso realizado", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Curso')) + 
+  theme_minimal() +
+  formato1+
+  scale_fill_brewer(palette = "Set1")
+
+
+plotly_curso <- ggplotly(curso_graph)
+save(plotly_curso, file = 'curso.Rdata')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ggsave('img/uni/curso.jpg', width = 10, height = 8)
 
 ## Ingestão de alcool
@@ -193,6 +291,51 @@ ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(
       pct_format(Freq / sum(Freq))
     )), stat='identity', fill='white', vjust=1.2)
 ggsave('img/uni/ingestao.jpg', width = 10, height = 8)
+
+
+
+
+
+# é melhor tentar implementar de outra forma
+View(df4)
+ggplot(df4, aes(x = curso, fill = ingere_alcool)) + 
+  geom_bar() + 
+  scale_fill_manual(values = c("Sim" = "green", "Não" = "red"))+
+  formato1
+
+
+
+
+
+
+
+
+
+
+
+  # outro gráfico ingestão alcool
+
+data.curso <- data.frame(table(df4$ingere_alcool))  # gráfico univariado de barras para ingestão de alcool
+alcool <- ggplot(data = data.curso, aes(x = reorder(Var1, Freq), y = Freq, fill = reorder(Var1, Freq))) +
+  geom_bar(stat = "identity", width = 0.8, color = 'black') +
+  labs(title = "Gráfico de barras da ingestão ou não de álcool", 
+       x = "", y = "Frequência") +
+  guides(fill = guide_legend(title = 'Ingere álcool?')) + 
+  theme_minimal() +
+  formato1+
+  scale_fill_brewer(palette = "Set1")
+
+plotly_ingestao <- ggplotly(alcool)
+save(plotly_ingestao, file = 'ingestao.Rdata')
+
+
+
+
+#
+
+
+
+
 
 
 table(df4[df4$se_fornao_ja_ingeriu != '',]$se_fornao_ja_ingeriu)/68 
@@ -312,7 +455,7 @@ auxCorpus <- tm_map(corpus, removeWords, stopwords('pt'))
 auxCorpus <- tm_map(auxCorpus, stemDocument)
 wordcloud(auxCorpus,max.words=20,colors=c("blue","red"))
 
-
+df4
 
 # data mining, que não faço ideia de como funciona por trás
 
