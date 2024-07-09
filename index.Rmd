@@ -50,7 +50,7 @@ Prever se um determinado cliente irá ser default (1) ou não, através de deter
 ---
 
 # Metodologia
-Para este trabalho, serão utilizados 4 algoritmos: KNN, Regressão Logística, Redes Neurais. 
+Para este trabalho, serão utilizados 4 algoritmos: KNN, Multilayer Perceptron, Naive Bayes, Random Forest, Ada Boost.
 
 ---
 
@@ -70,6 +70,7 @@ Para este trabalho, serão utilizados 4 algoritmos: KNN, Regressão Logística, 
 *Impostos*: representa o total gasto em impostos nos últimos 12 meses;  
 *Viagem*: representa o total gasto em viagens nos últimos 12 meses;  
 *Serviços*: representa o total gasto em serviços nos últimos 12 meses.   
+*DEFAULT*: cliente pagou ou não.
 
 ---
 

@@ -74,7 +74,7 @@ Prever se um determinado cliente irá ser default (1) ou não, através de deter
 ---
 
 # Metodologia
-Para este trabalho, serão utilizados 4 algoritmos: KNN, Regressão Logística, Redes Neurais. 
+Para este trabalho, serão utilizados 4 algoritmos: KNN, Multilayer Perceptron, Naive Bayes, Random Forest, Ada Boost.
 
 ---
 
@@ -94,6 +94,7 @@ Para este trabalho, serão utilizados 4 algoritmos: KNN, Regressão Logística, 
 *Impostos*: representa o total gasto em impostos nos últimos 12 meses;  
 *Viagem*: representa o total gasto em viagens nos últimos 12 meses;  
 *Serviços*: representa o total gasto em serviços nos últimos 12 meses.   
+*DEFAULT*: cliente pagou ou não.
 
 ---
 
@@ -126,13 +127,13 @@ resp$res.class
 
 ```
 ##              Class Sensitivity Specificity Precision FP Rate FN Rate
-## 1                0      0.7118      0.2500    0.7409  0.7500  0.2882
-## 2                1      0.2500      0.7118    0.2235  0.2882  0.7500
-## 3 Weighted average      0.5967      0.3651    0.6120  0.6349  0.4033
+## 1                0      0.7085      0.2208    0.7248  0.7792  0.2915
+## 2                1      0.2208      0.7085    0.2073  0.2915  0.7792
+## 3 Weighted average      0.5833      0.3460    0.5920  0.6540  0.4167
 ##   Negative Predictive Rate F-Score     MCC ROC Area PRC Area
-## 1                   0.2235  0.7261 -0.0369   0.4809   0.7263
-## 2                   0.7409  0.2360 -0.0369   0.4809   0.2368
-## 3                   0.3525  0.6040 -0.0369   0.4809   0.6044
+## 1                   0.2073  0.7166 -0.0693   0.4646   0.7166
+## 2                   0.7248  0.2138 -0.0693   0.4646   0.2140
+## 3                   0.3401  0.5875 -0.0693   0.4646   0.5876
 ```
 
 
@@ -141,7 +142,7 @@ resp$rate.hits
 ```
 
 ```
-## [1] 0.5967213
+## [1] 0.5833333
 ```
 
 ---
