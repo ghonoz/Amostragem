@@ -40,12 +40,10 @@ options(htmltools.dir.version = FALSE)
 ```
 
 
-# Introdução
-A mineração de dados é uma área interdisciplinar que integra conceitos de estatística, ciência da computação e inteligência artificial com o objetivo de descobrir padrões, anomalias e correlações em grandes conjuntos de dados. Esta técnica é amplamente utilizada para transformar dados brutos em informações úteis e acionáveis.
 
 # Objetivo
 
-Prever se um determinado cliente irá ser default (1) ou não, através de determinadas técnicas de Machine Learning.
+Utilizar técnicas de análise 
 
 ---
 
